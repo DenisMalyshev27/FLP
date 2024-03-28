@@ -62,6 +62,12 @@ brothers(X) :- brother(Y,X),print(Y), nl, fail.
 b_s(X,Y) :- parent(Z,X), parent(Z,Y), man(Z), X \= Y.
 b_s(X):- b_s(Y,X),parent(Z,Y),parent(Z,X),man(Z),print(Y), nl, fail.
 
+father(X,Y):-man(X), parent(X,Y).
+father(X):-father(Y,X),print(Y),nl,fail.
+
+sister(X,Y):-woman(X),parent(Z,X),parent(Z,Y),man(Z), X \= Y.
+sisters(X):-sister(Y,X),print(Y),nl,fail.
+
 max(X,Y,Z):-(
      X>=Y -> Z is X;
      Y>X -> Z is Y
@@ -78,3 +84,4 @@ fact2(N,A,X):- N>0,
     fact2(N1,A1,X).
 
 call_fact2(N,X):- fact2(N,1,X).
+
