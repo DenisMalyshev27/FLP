@@ -54,7 +54,7 @@ women():- woman(X), print(X), nl, fail.
 children(X):- parent(X,Y), print(Y), nl, fail.
 
 %Инициализирован предикат mother(X,Y), который проверяет, является ли X матерью Y.
-%mother(+X,+Y).
+%mother(+X,+Y)
 mother(X,Y):- woman(X), parent(X,Y).
 %Инициализирован предикат mother(X), который выводит всех матерей X.
 %mother(+X)
@@ -73,6 +73,20 @@ b_s(X,Y) :- parent(Z,X), parent(Z,Y), man(Z), X \= Y.
 %Инициализирован предикат b_s(X), который выводит всех братьев или сестер X.
 %b_s(+X)
 b_s(X):- b_s(Y,X),parent(Z,Y),parent(Z,X),man(Z),print(Y), nl, fail.
+
+%Инициализирован предикат father(X, Y), который проверяет, является ли X отцом Y.
+%father(+X,+Y)
+father(X,Y):-man(X), parent(X,Y).
+%Инициализирован предикат father(X), который выводит отца X.
+%father(+X)
+father(X):-father(Y,X),print(Y),nl,fail.
+
+%Инициализирован предикат sister(X, Y), который проверяет, является ли X сестрой Y.
+%sister(+X,+Y)
+sister(X,Y):-woman(X),parent(Z,X),parent(Z,Y),man(Z), X \= Y.
+%Инициализирован предикат sisters(X), который выводит всех сестер X.
+%sisters(+X)
+sisters(X):-sister(Y,X),print(Y),nl,fail.
 
 max(X,Y,Z):-(
      X>=Y -> Z is X;
