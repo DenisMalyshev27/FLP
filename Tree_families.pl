@@ -76,6 +76,21 @@ sister(X,Y):-woman(X),parent(Z,X),parent(Z,Y),man(Z), X \= Y.
 %Инициализирован предикат sisters(X), который выводит всех сестер X.
 sisters(X):-sister(Y,X),print(Y),nl,fail.
 
+%Инициализирован предикат grand_so(X, Y), который проверяет, является ли X внуком Y.
+grand_so(X,Y):-parent(Y,Z),parent(Z,X),man(X).
+%Инициализирован предикат grand_sons(X), который выводит всех внуков X.
+grand_sons(X):-grand_so(Y,X),print(Y),nl,fail.
+
+%Инициализирован предикат grand_pa_and_son(X,Y), который проверяет, являются ли X и Y дедушкой и внуком
+grand_pa_and_son(X,Y):-man(X),man(Y),parent(X,Z),parent(Z,Y).
+%Инициализирован предикат grand_pa_and_son(X,Y), который проверяет, являются ли X и Y внуком и дедушкой
+grand_pa_and_son(X,Y):-man(X),man(Y),parent(Z,X),parent(Y,Z).
+
+%Инициализирован предикат nephew(X,Y), который проверяет, является ли X племянником Y.
+nephew(X,Y):-parent(Z,X),(brother(Z,Y);sister(Z,Y)),man(X), \+ parent(Y,X).
+%Инициализирован предикат nephew(X), который выводит всех племянников X.
+nephew(X):-nephew(Y,X),print(Y),nl,fail.
+
 max(X,Y,Z):-(
      X>=Y -> Z is X;
      Y>X -> Z is Y
