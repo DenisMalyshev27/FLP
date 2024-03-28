@@ -68,6 +68,15 @@ father(X):-father(Y,X),print(Y),nl,fail.
 sister(X,Y):-woman(X),parent(Z,X),parent(Z,Y),man(Z), X \= Y.
 sisters(X):-sister(Y,X),print(Y),nl,fail.
 
+grand_so(X,Y):-parent(Y,Z),parent(Z,X),man(X).
+grand_sons(X):-grand_so(Y,X),print(Y),nl,fail.
+
+grand_pa_and_son(X,Y):-man(X),man(Y),parent(X,Z),parent(Z,Y).
+grand_pa_and_son(X,Y):-man(X),man(Y),parent(Z,X),parent(Y,Z).
+
+nephew(X,Y):-parent(Z,X),(brother(Z,Y);sister(Z,Y)),man(X), \+ parent(Y,X).
+nephew(X):-nephew(Y,X),print(Y),nl,fail.
+
 max(X,Y,Z):-(
      X>=Y -> Z is X;
      Y>X -> Z is Y
