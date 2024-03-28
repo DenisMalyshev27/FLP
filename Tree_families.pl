@@ -54,7 +54,7 @@ women():- woman(X), print(X), nl, fail.
 children(X):- parent(X,Y), print(Y), nl, fail.
 
 %Инициализирован предикат mother(X,Y), который проверяет, является ли X матерью Y.
-%mother(+X,+Y)
+%mother(+X,+Y).
 mother(X,Y):- woman(X), parent(X,Y).
 %Инициализирован предикат mother(X), который выводит всех матерей X.
 %mother(+X)
